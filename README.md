@@ -6,7 +6,7 @@ AutoBuild-Actions 稳定版仓库地址: [AutoBuild-Actions-Template](https://gi
 
 支持的 OpenWrt 源码: `coolsnowwolf/lede`、`immortalwrt/immortalwrt`、`openwrt/openwrt`、`lienol/openwrt`、`padavanonly/immortalwrtARM`、`hanwckf/immortalwrt-mt798x`
 
-**感谢H大多年的付出，本fork额外维护新路由3固件的编译**
+**感谢H大多年的付出，本fork额外维护 *新路由3* 固件的编译**
 
 ## 维护设备列表
 
