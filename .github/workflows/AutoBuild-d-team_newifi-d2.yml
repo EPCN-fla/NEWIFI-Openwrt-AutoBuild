@@ -73,6 +73,8 @@ env:
   DELETE_OLD_WORKFLOW: false
 # Cache 加速编译
   CACHE_ACCELERATE: false
+# 发布TAG名称
+  RELEASE_TAG_NAME: Newifi-D2_AutoBuild
 ### 结束
 ### 请按需求修改以上内容
 
@@ -278,7 +280,7 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: openwrt/bin/Firmware/*
         file_glob: true
-        tag: AutoUpdate-$(date +"%Y%m%d")
+        tag: ${{ env.RELEASE_TAG_NAME }}_$(date +%Y%m%d)
         overwrite: true
 
     - name: Delete old Workflow Runs
