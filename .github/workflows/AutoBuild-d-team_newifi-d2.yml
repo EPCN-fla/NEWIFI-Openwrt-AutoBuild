@@ -208,14 +208,9 @@ jobs:
       run: |
         git clone -b $REPO_BRANCH $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
-    - name: Pre-download Libraries
-      run: |
         cd openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        make defconfig
-        make download -j8
 
     - name: Accelerate
       if: env.CACHE_ACCELERATE == 'true'
@@ -244,6 +239,14 @@ jobs:
         Firmware_Diy_Main
         Firmware_Diy
         Firmware_Diy_Other
+
+    - name: Pre-download Libraries
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make download -j8
 
     - name: Build OpenWrt
       id: compile
