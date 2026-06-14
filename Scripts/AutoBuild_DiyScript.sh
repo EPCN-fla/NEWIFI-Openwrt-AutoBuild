@@ -122,18 +122,14 @@ EOF
 		esac
 
 		case "${CONFIG_FILE}" in
-		d-team_newifi-d2-Clash | xiaoyu_xy-c5-Clash)
-			ClashDL mipsle-hardfloat tun
+		d-team_newifi-d2-Clash)
+			ClashDL mipsle-softfloat meta
 		;;
 		esac
 			
 		case "${TARGET_PROFILE}" in
 		d-team_newifi-d2)
 			Copy ${CustomFiles}/${TARGET_PROFILE}_system ${BASE_FILES}/etc/config system
-		;;
-		xiaomi_redmi-router-ax6s)
-			AddPackage passwall-depends Openwrt-Passwall openwrt-passwall-packages main
-			AddPackage passwall-luci Openwrt-Passwall openwrt-passwall main
 		;;
 		esac
 	;;
@@ -178,13 +174,6 @@ EOF
 				chmod +x ${BASE_FILES}/usr/bin/speedtest
 			;;
 			esac
-		;;
-		esac
-	;;
-	padavanonly/immortalwrtARM*)
-		case "${TARGET_PROFILE}" in
-		xiaomi_redmi-router-ax6s)
-			:
 		;;
 		esac
 	;;
