@@ -594,11 +594,8 @@ ClashDL() {
 	fi
 	
 	case $CORE_TYPE in
-	dev | meta)
+	meta | smart)
 		CORE_PATH=$TMP_PATH/dev/$CORE_TYPE
-	;;
-	premium | tun)
-		CORE_PATH=$TMP_PATH/dev/premium
 	;;
 	esac
 	
@@ -607,7 +604,7 @@ ClashDL() {
 	)
 	
 	case $CORE_TYPE in
-	dev | meta)
+	meta | smart)
 		IS_CORE="clash-linux-${PLATFORM}.tar.gz"
 		if [[ -f ${CORE_PATH}/${IS_CORE} ]]
 		then
@@ -638,26 +635,11 @@ ClashDL() {
 	fi
 	MKDIR ${BASE_FILES}/etc/openclash/core
 	case $CORE_TYPE in
-	dev | meta)
+	meta | smart)
 		tar -xvzf $CORE_PATH/$TARGET_CORE -C ${TMP_PATH}
-		if [[ $CORE_TYPE == dev ]]
-		then
-			chmod 777 ${TMP_PATH}/clash
-			mv -f ${TMP_PATH}/clash ${BASE_FILES}/etc/openclash/core/clash
-			ECHO "CORE Size: $(du -h ${BASE_FILES}/etc/openclash/core/clash)"
-		fi
-		if [[ $CORE_TYPE == meta ]]
-		then
-			chmod 777 ${TMP_PATH}/clash
-			mv -f ${TMP_PATH}/clash ${BASE_FILES}/etc/openclash/core/clash_meta
-			ECHO "CORE Size: $(du -h ${BASE_FILES}/etc/openclash/core/clash_meta)"
-		fi
-	;;
-	premium | tun)
-		gzip -dk -c $CORE_PATH/$TARGET_CORE > ${TMP_PATH}/clash_tun
-		chmod 777 ${TMP_PATH}/clash_tun
-		mv -f ${TMP_PATH}/clash_tun ${BASE_FILES}/etc/openclash/core/clash_tun
-		ECHO "CORE Size: $(du -h ${BASE_FILES}/etc/openclash/core/clash_tun)"
+		chmod 777 ${TMP_PATH}/clash
+		mv -f ${TMP_PATH}/clash ${BASE_FILES}/etc/openclash/core/clash_meta
+		ECHO "CORE Size: $(du -h ${BASE_FILES}/etc/openclash/core/clash_meta)"
 	;;
 	esac
 }
