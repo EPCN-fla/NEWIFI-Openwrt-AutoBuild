@@ -8,6 +8,8 @@ AutoBuild-Actions 稳定版仓库地址: [AutoBuild-Actions-Template](https://gi
 
 **感谢H大多年的付出，本fork额外维护 *新路由3* 固件的编译**
 
+**另外请注意：-Clash配置文件仅包含应用，没有内核（若包含则编译出的固件大小超过32M），因此请 使用U盘扩容/更改内核存放位置 解决**
+
 ## 维护设备列表
 
 | 维护 | 型号 | 配置文件 (TARGET_PROFILE) | 源 | 备注 |
