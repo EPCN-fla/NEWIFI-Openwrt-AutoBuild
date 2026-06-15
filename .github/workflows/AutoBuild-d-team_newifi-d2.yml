@@ -8,18 +8,18 @@ name: NEWIFI D2
 
 on:
   repository_dispatch:
-  ## Git Push 时触发编译(不要删除此行注释)
-  #push:
-  #  branches: 
-  #    - master
+  # # Git Push 时触发编译(不要删除此行注释)
+  # push:
+  #   branches: 
+  #     - master
   
   ## 定时触发编译(不要删除此行注释)
   schedule:
     - cron: 0 2 * * 4
   
-  ## 重新点亮 Star 时触发编译(不要删除此行注释)
-  #watch:
-  #  types: [started]
+  # # 重新点亮 Star 时触发编译(不要删除此行注释)
+  # watch:
+  #   types: [started]
   
   ### 界面控制部分 ( 以下内容请保持不变, 如有需要仅修改 options 选项 )
   workflow_dispatch:
@@ -79,6 +79,13 @@ env:
 jobs:
   Compile:
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        CONFIG_FILE: ${{ fromJSON(github.event_name == 'schedule' && '["d-team_newifi-d2","d-team_newifi-d2-Clash","d-team_newifi-d2-Lite","d-team_newifi-d2-Tiny"]' || format('["{0}"]', inputs.Tempoary_CONFIG || 'd-team_newifi-d2')) }}
+    env:
+      CONFIG_FILE: ${{ matrix.CONFIG_FILE }}
     permissions:
       issues: write
       pull-requests: write
